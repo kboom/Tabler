@@ -9,16 +9,6 @@ var geometry, material, mesh;
 
 export default class Scene extends React.Component {
 
-
-    animate = () => {
-        requestAnimationFrame(this.animate);
-
-        mesh.rotation.x += 0.01;
-        mesh.rotation.y += 0.02;
-
-        renderer.render(scene, camera);
-    };
-
     init = () => {
 
         geometry = new THREE.BoxGeometry(200, 200, 200);
@@ -34,7 +24,7 @@ export default class Scene extends React.Component {
 
     componentDidMount = () => {
         this.init();
-        this.animate();
+        renderer.render(scene, camera);
     };
 
     render() {
