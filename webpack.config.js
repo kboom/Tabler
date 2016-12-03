@@ -17,17 +17,16 @@ const config = {
 
     entry: [
         '!!style!css!react-mdl/extra/material.min.css',
-        '!!style!css!react-grid-layout/css/styles.css',
-        '!!style!css!react-resizable/css/styles.css',
         'react-mdl/extra/material.min.js',
-        './main.js',
+        './main.jsx',
     ],
 
     output: {
         path: path.resolve(__dirname, './public/dist'),
-        filename: isDebug ? "[name].js?[hash]" : "[name].[hash].js",
+        publicPath: '/dist/',
+        filename: isDebug ? '[name].js?[hash]' : '[name].[hash].js',
         chunkFilename: isDebug ? '[id].js?[chunkhash]' : '[id].[chunkhash].js',
-        sourcePrefix: '  '
+        sourcePrefix: '  ',
     },
 
     debug: isDebug,
@@ -62,11 +61,53 @@ const config = {
                 include: [
                     path.resolve(__dirname, './src')
                 ],
-                loader: `babel-loader?${JSON.stringify(babelConfig)}`
+                loader: `babel-loader?${JSON.stringify(babelConfig)}`,
             },
             {
-                test: /\.css$/,
-                loader: "style!css"
+                test: /\.css/,
+                loaders: [
+                    'style-loader',
+                    `css-loader?${JSON.stringify({
+                        sourceMap: isDebug,
+                        modules: true,
+                        localIdentName: isDebug ? '[name]_[local]_[hash:base64:3]' : '[hash:base64:4]',
+                        minimize: !isDebug,
+                    })}`,
+                    'postcss-loader'
+                ],
+                include: [
+                    /flexboxgrid/,
+                    path.resolve(__dirname, "src/main")
+                ]
+            },
+            {
+                test: /\.json$/,
+                exclude: [
+                    path.resolve(__dirname, './src/main/routes.json'),
+                ],
+                loader: 'json-loader',
+            },
+            {
+                test: /\.json$/,
+                include: [
+                    path.resolve(__dirname, './src/main/routes.json'),
+                ],
+                loaders: [
+                    `babel-loader?${JSON.stringify(babelConfig)}`,
+                    path.resolve(__dirname, './utils/routes-loader.js'),
+                ],
+            },
+            {
+                test: /\.md$/,
+                loader: path.resolve(__dirname, './utils/markdown-loader.js'),
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+                loader: 'url-loader?name=images/[name].[ext]',
+            },
+            {
+                test: /\.(eot|ttf|wav|mp3)$/,
+                loader: 'file-loader',
             }
         ]
     },
