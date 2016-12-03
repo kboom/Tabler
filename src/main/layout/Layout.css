@@ -1,6 +1,6 @@
 .root {
     background-size: cover;
-    background: url('../assets/background.jpg') no-repeat fixed center;
+    background: url('../assets/images/background.jpg') no-repeat fixed center;
 }
 
 .content {

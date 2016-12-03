@@ -102,7 +102,21 @@ const config = {
                 loader: path.resolve(__dirname, './utils/markdown-loader.js'),
             },
             {
+                test: /\.obj$/,
+                loader: 'url-loader?name=objects/[name]'
+            },
+            {
+                test: /\.(jpg)$/,
+                include: [
+                    path.resolve(__dirname, 'src/main/assets/textures'),
+                ],
+                loader: 'url-loader?name=textures/[name]'
+            },
+            {
                 test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+                include: [
+                    path.resolve(__dirname, 'src/main/assets/images')
+                ],
                 loader: 'url-loader?name=images/[name].[ext]',
             },
             {

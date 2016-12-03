@@ -3,28 +3,48 @@ import THREE from '../core/three';
 import scene from '../core/scene';
 import camera from '../core/camera';
 import renderer from '../core/renderer';
+import controls from '../core/controls';
 
-var geometry, material, mesh;
-
+import Table from '../objects/table/table'
+import Box from '../objects/table/box'
 
 export default class Scene extends React.Component {
 
+    animate = () => {
+        requestAnimationFrame(this.animate);
+        controls.update();
+        renderer.render(scene, camera);
+    };
+
+    onWindowResize = () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
     init = () => {
 
-        geometry = new THREE.BoxGeometry(200, 200, 200);
-        material = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
 
-        mesh = new THREE.Mesh(geometry, material);
+        var ambient = new THREE.AmbientLight( 0x101030, 1 );
+        scene.add( ambient );
 
-        scene.add(mesh);
+        var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+        directionalLight.position.set( 0, 0, 1 );
+        scene.add( directionalLight );
 
         document.getElementById("scene").appendChild(renderer.domElement);
+        window.addEventListener('resize', this.onWindowResize, false );
 
+        let table = new Table();
+        table.load();
+
+        let box = new Box();
+        box.load();
     };
 
     componentDidMount = () => {
         this.init();
-        renderer.render(scene, camera);
+        this.animate();
     };
 
     render() {

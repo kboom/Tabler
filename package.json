@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.9.1",
-    "three": "^0.82.1",
     "classnames": "^2.2.5",
     "fastclick": "^1.0.6",
     "history": "^3.0.0",
@@ -29,6 +28,9 @@
     "react-router": "^3.0.0",
     "react-tap-event-plugin": "^2.0.0",
     "redux": "^3.5.2",
+    "three": "^0.82.1",
+    "three-obj-loader": "^1.0.2",
+    "three-trackballcontrols": "0.0.5",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
