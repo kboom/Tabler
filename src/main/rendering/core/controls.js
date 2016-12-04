@@ -12,4 +12,7 @@ controls.staticMoving = true;
 controls.dynamicDampingFactor = 0.3;
 controls.keys = [ 65, 83, 68 ];
 
+
+// controls.target.set(new THREE.Vector3(0,0,0));
+
 export default controls;

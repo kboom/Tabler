@@ -28,7 +28,7 @@ export default class Scene extends React.Component {
     init = () => {
 
 
-        var ambient = new THREE.AmbientLight( 0x101030, 1);
+        var ambient = new THREE.AmbientLight( 0x101030, 10);
         scene.add( ambient );
 
         var directionalLight = new THREE.DirectionalLight( 0xffeedd );
@@ -40,11 +40,11 @@ export default class Scene extends React.Component {
 
         controls.addEventListener('change', this.renderFrame);
 
+        var grid = new THREE.GridHelper(1000000, 1000);
+        scene.add(grid);
+
         let table = new Table();
         table.load();
-
-        let box = new Box();
-        box.load();
     };
 
     componentDidMount = () => {
