@@ -1,6 +1,6 @@
 import THREE from '../three';
 import manager from './loadingManager'
 
-var imageLoader = new THREE.ImageLoader(manager);
+var textureLoader = new THREE.TextureLoader(manager);
 
-export default imageLoader;
+export default textureLoader;

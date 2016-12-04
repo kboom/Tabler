@@ -7,6 +7,7 @@ import controls from '../core/controls';
 
 import Table from '../objects/table/table'
 import Chair from '../objects/table/chair'
+import Glass from '../objects/table/glass'
 import Crosshair from '../objects/crosshair/crosshair'
 import Box from '../objects/table/box'
 
@@ -33,10 +34,6 @@ export default class Scene extends React.Component {
         var ambient = new THREE.AmbientLight(0x101030, 10);
         scene.add(ambient);
 
-        var directionalLight = new THREE.DirectionalLight(0xffeedd);
-        directionalLight.position.set(0, 10000, 0);
-        scene.add(directionalLight);
-
         document.getElementById("scene").appendChild(renderer.domElement);
         window.addEventListener('resize', this.onWindowResize, false);
 
@@ -51,8 +48,17 @@ export default class Scene extends React.Component {
         let table = new Table();
         table.load();
 
-        let chair = new Chair();
-        chair.load();
+        // let chair = new Chair();
+        // chair.load();
+
+        let glass = new Glass();
+        glass.load();
+
+
+        var directionalLight = new THREE.DirectionalLight(0xffeedd, 100);
+        directionalLight.position.set(-1000, 10000, 0);
+        // directionalLight.target = glass;
+        scene.add(directionalLight);
 
     };
 
