@@ -6,6 +6,7 @@ import renderer from '../core/renderer';
 import controls from '../core/controls';
 
 import Table from '../objects/table/table'
+import Chair from '../objects/table/chair'
 import Crosshair from '../objects/crosshair/crosshair'
 import Box from '../objects/table/box'
 
@@ -33,7 +34,7 @@ export default class Scene extends React.Component {
         scene.add(ambient);
 
         var directionalLight = new THREE.DirectionalLight(0xffeedd);
-        directionalLight.position.set(10, 10, 10);
+        directionalLight.position.set(0, 10000, 0);
         scene.add(directionalLight);
 
         document.getElementById("scene").appendChild(renderer.domElement);
@@ -49,6 +50,10 @@ export default class Scene extends React.Component {
 
         let table = new Table();
         table.load();
+
+        let chair = new Chair();
+        chair.load();
+
     };
 
     componentDidMount = () => {
