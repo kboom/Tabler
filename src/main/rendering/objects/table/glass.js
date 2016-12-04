@@ -2,11 +2,13 @@ import THREE from '../../core/three';
 import scene from '../../core/scene';
 import objectLoader from '../../core/loading/objectLoader'
 import imageLoader from '../../core/loading/imageLoader'
+import jsonLoader from '../../core/loading/jsonLoader'
 
-var glass = require('../../../assets/objects/glass.obj');
+// var glass = require('../../../assets/objects/glass.obj');
+var glass = require('../../../assets/objects/glass.json');
 var wood = require('../../../assets/textures/wood.jpg');
 
-export default class Glass extends THREE.Object3D {
+export default class Glass extends THREE.Mesh {
 
     constructor() {
         super();
@@ -22,16 +24,22 @@ export default class Glass extends THREE.Object3D {
             texture.needsUpdate = true;
         });
 
-        objectLoader.load(glass, function (object) {
-            object.traverse(function (child) {
-                that.add(child);
-            });
+        jsonLoader.load(
+            glass,
+            function ( geometry, materials ) {
+                var material = new THREE.MeshStandardMaterial({
+                   color: 0x00ff00
+                });
 
-            that.scale.set(200,200,200);
-            that.position.set(0,5480,0);
+                that.geometry = geometry;
+                that.material = material;
 
-            scene.add(that);
-        });
+                that.scale.set(1000,1000,1000);
+                that.position.set(0,5480,0);
+
+                scene.add( that );
+            }
+        );
 
     };
 

@@ -84,6 +84,7 @@ const config = {
                 test: /\.json$/,
                 exclude: [
                     path.resolve(__dirname, 'src/main/routes.json'),
+                    path.resolve(__dirname, 'src/main/assets/objects')
                 ],
                 loader: 'json-loader',
             },
@@ -102,7 +103,7 @@ const config = {
                 loader: path.resolve(__dirname, 'utils/markdown-loader.js'),
             },
             {
-                test: /\.(obj)$/,
+                test: /\.(obj|json)$/,
                 include: [
                     path.resolve(__dirname, 'src/main/assets/objects'),
                 ],
