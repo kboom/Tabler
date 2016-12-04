@@ -3,6 +3,8 @@ import scene from '../../core/scene';
 import objectLoader from '../../core/loading/objectLoader'
 import imageLoader from '../../core/loading/imageLoader'
 
+var table = require('../../../assets/objects/table.obj');
+var wood = require('../../../assets/textures/wood.jpg');
 
 export default class Table {
 
@@ -10,17 +12,17 @@ export default class Table {
 
         var texture = new THREE.Texture();
 
-        //
-        // imageLoader.load('/textures/wood', function (image) {
-        //     texture.image = image;
-        //     texture.needsUpdate = true;
-        // });
 
-        objectLoader.load('/objects/table', function (object) {
+        imageLoader.load(wood, function (image) {
+            texture.image = image;
+            texture.needsUpdate = true;
+        });
+
+        objectLoader.load(table, function (object) {
             object.traverse(function (child) {
                 if (child instanceof THREE.Mesh) {
-                    var material = new THREE.MeshLambertMaterial({color: 0xff0000});
-                    child.material = material;
+                    child.material.map = texture;
+                    child.material.side = THREE.DoubleSide;
                 }
             });
 

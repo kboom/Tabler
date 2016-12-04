@@ -32,7 +32,7 @@ export default class Scene extends React.Component {
         scene.add( ambient );
 
         var directionalLight = new THREE.DirectionalLight( 0xffeedd );
-        directionalLight.position.set( 1, 0, 1 );
+        directionalLight.position.set(10, 10, 10);
         scene.add( directionalLight );
 
         document.getElementById("scene").appendChild(renderer.domElement);

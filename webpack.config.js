@@ -59,7 +59,7 @@ const config = {
             {
                 test: /\.js[x]?$/,
                 include: [
-                    path.resolve(__dirname, './src')
+                    path.resolve(__dirname, 'src')
                 ],
                 loader: `babel-loader?${JSON.stringify(babelConfig)}`,
             },
@@ -83,26 +83,29 @@ const config = {
             {
                 test: /\.json$/,
                 exclude: [
-                    path.resolve(__dirname, './src/main/routes.json'),
+                    path.resolve(__dirname, 'src/main/routes.json'),
                 ],
                 loader: 'json-loader',
             },
             {
                 test: /\.json$/,
                 include: [
-                    path.resolve(__dirname, './src/main/routes.json'),
+                    path.resolve(__dirname, 'src/main/routes.json'),
                 ],
                 loaders: [
                     `babel-loader?${JSON.stringify(babelConfig)}`,
-                    path.resolve(__dirname, './utils/routes-loader.js'),
+                    path.resolve(__dirname, 'utils/routes-loader.js'),
                 ],
             },
             {
                 test: /\.md$/,
-                loader: path.resolve(__dirname, './utils/markdown-loader.js'),
+                loader: path.resolve(__dirname, 'utils/markdown-loader.js'),
             },
             {
-                test: /\.obj$/,
+                test: /\.(obj)$/,
+                include: [
+                    path.resolve(__dirname, 'src/main/assets/objects'),
+                ],
                 loader: 'url-loader?name=objects/[name]'
             },
             {
@@ -115,7 +118,7 @@ const config = {
             {
                 test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
                 include: [
-                    path.resolve(__dirname, 'src/main/assets/images')
+                    path.resolve(__dirname, './src/main/assets/images')
                 ],
                 loader: 'url-loader?name=images/[name].[ext]',
             },
