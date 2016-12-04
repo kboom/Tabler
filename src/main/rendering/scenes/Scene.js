@@ -6,6 +6,7 @@ import renderer from '../core/renderer';
 import controls from '../core/controls';
 
 import Table from '../objects/table/table'
+import Crosshair from '../objects/crosshair/crosshair'
 import Box from '../objects/table/box'
 
 export default class Scene extends React.Component {
@@ -28,20 +29,23 @@ export default class Scene extends React.Component {
     init = () => {
 
 
-        var ambient = new THREE.AmbientLight( 0x101030, 10);
-        scene.add( ambient );
+        var ambient = new THREE.AmbientLight(0x101030, 10);
+        scene.add(ambient);
 
-        var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+        var directionalLight = new THREE.DirectionalLight(0xffeedd);
         directionalLight.position.set(10, 10, 10);
-        scene.add( directionalLight );
+        scene.add(directionalLight);
 
         document.getElementById("scene").appendChild(renderer.domElement);
-        window.addEventListener('resize', this.onWindowResize, false );
+        window.addEventListener('resize', this.onWindowResize, false);
 
         controls.addEventListener('change', this.renderFrame);
 
         var grid = new THREE.GridHelper(1000000, 1000);
         scene.add(grid);
+
+        let crosshair = new Crosshair();
+        crosshair.load();
 
         let table = new Table();
         table.load();

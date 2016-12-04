@@ -1,8 +1,8 @@
 import THREE, {OrbitControls} from './three';
 import camera from './camera';
 
-camera.position.set(1500, 1500, 1500);
-camera.lookAt(new THREE.Vector3());
+camera.position.set(3000, 1500, 1500);
+camera.lookAt(new THREE.Vector3(0,0,0));
 
 var controls = new OrbitControls(camera);
 
