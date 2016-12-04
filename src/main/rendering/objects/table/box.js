@@ -6,8 +6,8 @@ export default class Box {
 
     load = () => {
 
-        var geometry = new THREE.BoxGeometry(200, 200, 200);
-        var material = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
+        var geometry = new THREE.BoxGeometry(1, 1, 1);
+        var material = new THREE.MeshLambertMaterial({color: 0xff0000});
 
         var mesh = new THREE.Mesh(geometry, material);
 

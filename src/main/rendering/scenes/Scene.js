@@ -13,6 +13,9 @@ export default class Scene extends React.Component {
     animate = () => {
         requestAnimationFrame(this.animate);
         controls.update();
+    };
+
+    renderFrame = () => {
         renderer.render(scene, camera);
     };
 
@@ -25,15 +28,17 @@ export default class Scene extends React.Component {
     init = () => {
 
 
-        var ambient = new THREE.AmbientLight( 0x101030, 1 );
+        var ambient = new THREE.AmbientLight( 0x101030, 1);
         scene.add( ambient );
 
         var directionalLight = new THREE.DirectionalLight( 0xffeedd );
-        directionalLight.position.set( 0, 0, 1 );
+        directionalLight.position.set( 1, 0, 1 );
         scene.add( directionalLight );
 
         document.getElementById("scene").appendChild(renderer.domElement);
         window.addEventListener('resize', this.onWindowResize, false );
+
+        controls.addEventListener('change', this.renderFrame);
 
         let table = new Table();
         table.load();
@@ -44,6 +49,7 @@ export default class Scene extends React.Component {
 
     componentDidMount = () => {
         this.init();
+        this.renderFrame();
         this.animate();
     };
 
