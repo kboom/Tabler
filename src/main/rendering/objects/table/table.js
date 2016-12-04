@@ -27,7 +27,7 @@ export default class Table {
             });
 
             object.scale.set(1000,1000,1000);
-            object.position.set(0,0,0);
+            object.position.set(0,3000,0);
 
             scene.add(object);
         });
